@@ -60,7 +60,6 @@ x = shift.
 
 #include "SCC_PolyFun.h"
 #include "SCC_OrthoPoly.h"
-#include "SCC_OrthoPolyUtility.h"
 
 namespace SCC
 {
@@ -145,7 +144,6 @@ class HermiteFunction
     double                    gamma;
     double                    shift;
     OrthoPoly             orthoPoly;
-    OrthoPolyUtility   orthoUtility;
 };
 
 }; // namespace SCC
