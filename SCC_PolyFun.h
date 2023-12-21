@@ -229,7 +229,7 @@ class PolyFun
 	std::function<double(double)> getEvaluationPtr() const
 	{
 	std::function<double(double)> F = [this](double x) {return this->operator()(x);};
-	return std::move(F);
+	return F;
 	}
 
 
