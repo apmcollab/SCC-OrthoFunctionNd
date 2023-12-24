@@ -192,12 +192,12 @@ class OrthoPoly
     Pnm1.initialize(0);
     Pnm1[0] = 1.0;
 
-    if(index == 0) return Pnm1;
+    if(index == 0) {scaleThenShift(Pnm1); return Pnm1;}
 
     Pn.initialize(1);
     Pn[0] = 0.0; Pn[1] = 1.0;
 
-    if(index == 1) return Pn;
+    if(index == 1) {scaleThenShift(Pn); return Pn;}
 
     for(int i = 1; i < index; i++)
     {
@@ -218,12 +218,12 @@ class OrthoPoly
     Pnm1.initialize(0);
     Pnm1[0] = 1.0;
 
-    if(index == 0) return Pnm1;
+    if(index == 0)  {scaleThenShift(Pnm1); return Pnm1;}
 
     Pn.initialize(1);
     Pn[0] = 0.0; Pn[1] = 2.0;
 
-    if(index == 1) return Pn;
+    if(index == 1) {scaleThenShift(Pn); return Pn;}
 
     for(int i = 1; i < index; i++)
     {
@@ -244,12 +244,12 @@ class OrthoPoly
     Pnm1.initialize(0);
     Pnm1[0] = 1.0;
 
-    if(index == 0) return Pnm1;
+    if(index == 0) {scaleThenShift(Pnm1); return Pnm1;}
 
     Pn.initialize(1);
     Pn[0] = 1.0; Pn[1] = -1.0;
 
-    if(index == 1) return Pn;
+    if(index == 1) {scaleThenShift(Pn); return Pn;}
 
     for(int i = 1; i < index; i++)
     {
@@ -270,12 +270,12 @@ class OrthoPoly
     Pnm1.initialize(0);
     Pnm1[0] = 1.0;
 
-    if(index == 0) return Pnm1;
+    if(index == 0) {scaleThenShift(Pnm1); return Pnm1;}
 
     Pn.initialize(1);
     Pn[0] = 0.0; Pn[1] = 1.0;
 
-    if(index == 1) return Pn;
+    if(index == 1) {scaleThenShift(Pn); return Pn;}
 
     for(int i = 1; i < index; i++)
     {
@@ -287,12 +287,8 @@ class OrthoPoly
     default : std::cout << " Orthogonal Polynomial Type index not Supported " << std::endl;
     }
 
-	// Scale then shift if needed
-
-	if((xScaleFactor   != 1.0))  {Pn = Pn.scale(xScaleFactor);}
-    if((shift          != 0.0))  {Pn = Pn.shift(shift);}
-
-    return Pn;
+	scaleThenShift(Pn);
+	return Pn;
 }
 
 std::vector<PolyFun>  getOrthoPolyArray(long maxIndex) const
@@ -404,6 +400,12 @@ std::vector<PolyFun>  getOrthoPolyArray(long maxIndex) const
 }
 
     private :
+
+    void scaleThenShift(PolyFun& P) const
+    {
+    if((xScaleFactor   != 1.0))  {P = P.scale(xScaleFactor);}
+    if((shift          != 0.0))  {P = P.shift(shift);}
+    }
 
     int         polyType;
     double      shift;
