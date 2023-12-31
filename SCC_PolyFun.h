@@ -317,6 +317,12 @@ class PolyFun
 
 	friend std::ostream& operator <<(std::ostream& outStream, const PolyFun& P)
 	{
+		std::ios_base::fmtflags ff;
+        int precisionCache;
+
+		ff =  outStream.flags();
+        precisionCache = outStream.precision();
+
 	    outStream.setf(std::ios::fixed);
 	    outStream.precision(2);
 	    if(P.degree >= 0)
@@ -332,6 +338,9 @@ class PolyFun
 	    outStream.setf(std::ios::right);
 	    }
 	    }
+	    outStream.flags(ff);
+	    outStream.precision(precisionCache);
+
 	    return outStream;
 	}
 
