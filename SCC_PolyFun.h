@@ -56,7 +56,7 @@ class PolyFun
 	PolyFun(const PolyFun& P)
 	{
 	    degree = P.degree;
-	    coeff      = P.coeff;
+	    coeff  = P.coeff;
 	    zero   = P.zero;
 	}
 
@@ -70,7 +70,7 @@ class PolyFun
 	PolyFun(const std::vector<double>& coefficients)
 	{
 	    degree = coefficients.size()-1;
-	    coeff      = coefficients;
+	    coeff  = coefficients;
 	    zero   = 0.0;
 	}
 
@@ -81,22 +81,26 @@ class PolyFun
 	{
 	    coeff.clear();
 	    degree = -1;
+	    zero   = 0.0;
 	}
 
 	void initialize(const PolyFun& P)
 	{
-	    coeff      = P.coeff;
+		initialize();
+	    coeff  = P.coeff;
 	    degree = P.degree;
 	}
 
 	void initialize(int degree)
 	{
+		initialize();
 	    this->degree = degree;
 	    coeff.resize(degree+1,0.0);
 	}
 
 	void initialize(const std::vector<double>& coefficients)
 	{
+		initialize();
 	    degree = coefficients.size()-1;
 	    coeff      = coefficients;
 	}
@@ -317,6 +321,22 @@ class PolyFun
 
 	friend std::ostream& operator <<(std::ostream& outStream, const PolyFun& P)
 	{
+	    if(P.degree >= 0)
+	    {outStream << "1   : " << P.coeff[0] << std::endl;}
+	    int i;
+	    if(P.degree >= 1)
+	    {
+	    for(i = 1; i <= P.degree; i++)
+	    {
+	    outStream << "x^" << i << " : " << P.coeff[i] << std::endl;;
+	    }}
+
+	    return outStream;
+	}
+
+	/*
+    friend std::ostream& operator <<(std::ostream& outStream, const PolyFun& P)
+	{
 		std::ios_base::fmtflags ff;
         int precisionCache;
 
@@ -343,6 +363,7 @@ class PolyFun
 
 	    return outStream;
 	}
+    */
 
 
 	int getDegree() const
