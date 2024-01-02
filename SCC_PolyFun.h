@@ -86,23 +86,23 @@ class PolyFun
 
 	void initialize(const PolyFun& P)
 	{
-		initialize();
+		coeff.clear();
 	    coeff  = P.coeff;
 	    degree = P.degree;
 	}
 
 	void initialize(int degree)
 	{
-		initialize();
+		coeff.clear();
 	    this->degree = degree;
 	    coeff.resize(degree+1,0.0);
 	}
 
 	void initialize(const std::vector<double>& coefficients)
 	{
-		initialize();
+		coeff.clear();
 	    degree = coefficients.size()-1;
-	    coeff      = coefficients;
+	    coeff  = coefficients;
 	}
 
 	PolyFun integrate()
