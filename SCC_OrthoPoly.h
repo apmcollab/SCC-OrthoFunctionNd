@@ -314,13 +314,18 @@ std::vector<PolyFun>  getOrthoPolyArray(long maxIndex) const
     P[0].initialize(0);
     P[0][0] = 1.0;
 
-    P[1].initialize(1);
-    P[1][0] = 0.0; P[1][1] = 1.0;
-
-    for(long i = 1; i < maxIndex; i++)
+    if(maxIndex >= 1)
     {
-    P[i+1] =((2.0*i + 1.0)*Xpoly*P[i] - i*P[i-1])/double(i+1);
+    	P[1].initialize(1);
+    	P[1][0] = 0.0; P[1][1] = 1.0;
+
+    	for(long i = 1; i < maxIndex; i++)
+    	{
+    		P[i+1] =((2.0*i + 1.0)*Xpoly*P[i] - i*P[i-1])/double(i+1);
+    	}
     }
+
+
     }; break;
 //
 // Hermite polynomials :
@@ -334,13 +339,17 @@ std::vector<PolyFun>  getOrthoPolyArray(long maxIndex) const
     P[0].initialize(0);
     P[0][0] = 1.0;
 
-    P[1].initialize(1);
-    P[1][0] = 0.0; P[1][1] = 2.0;
-
-    for(long i = 1; i < maxIndex; i++)
+    if(maxIndex >= 1)
     {
-    P[i+1] = 2.0*Xpoly*P[i] - 2.0*i*P[i-1];
+    	P[1].initialize(1);
+    	P[1][0] = 0.0; P[1][1] = 2.0;
+
+    	for(long i = 1; i < maxIndex; i++)
+    	{
+    		P[i+1] = 2.0*Xpoly*P[i] - 2.0*i*P[i-1];
+    	}
     }
+
     }; break;
 //
 // Laguerre polynomials :
@@ -354,13 +363,17 @@ std::vector<PolyFun>  getOrthoPolyArray(long maxIndex) const
     P[0].initialize(0);
     P[0][0] = 1.0;
 
-    P[1].initialize(1);
-    P[1][0] = 1.0; P[1][1] = -1.0;
-
-    for(long i = 1; i < maxIndex; i++)
+    if(maxIndex >= 1)
     {
-    P[i+1] =(1.0 + 2.0*i)*P[i]  - Xpoly*P[i] - i*i*P[i-1];
+    	P[1].initialize(1);
+    	P[1][0] = 1.0; P[1][1] = -1.0;
+
+    	for(long i = 1; i < maxIndex; i++)
+    	{
+    		P[i+1] =(1.0 + 2.0*i)*P[i]  - Xpoly*P[i] - i*i*P[i-1];
+    	}
     }
+
     }; break;
 //
 // Chebyshev polynomials :
@@ -374,13 +387,17 @@ std::vector<PolyFun>  getOrthoPolyArray(long maxIndex) const
     P[0].initialize(0);
     P[0][0] = 1.0;
 
-    P[1].initialize(1);
-    P[1][0] = 0.0; P[1][1] = 1.0;
-
-    for(long i = 1; i < maxIndex; i++)
+    if(maxIndex >= 1)
     {
-    P[i+1] =2.0*Xpoly*P[i] - P[i-1];
+    	P[1].initialize(1);
+    	P[1][0] = 0.0; P[1][1] = 1.0;
+
+    	for(long i = 1; i < maxIndex; i++)
+    	{
+    		P[i+1] =2.0*Xpoly*P[i] - P[i-1];
+    	}
     }
+
     }; break;
     default : std::cout << " Orthogonal Polynomial Type Not Supported " << std::endl;
     }
